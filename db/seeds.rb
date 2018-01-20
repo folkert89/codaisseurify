@@ -1,7 +1,31 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Song.destroy_all
+Artist.destroy_all
+
+paul_mc_cartney = Artist.create!(name: "Paul McCartney", birth_date: "06/11/1942", country_of_origin: "United Kingdom")
+queen = Artist.create!(name: "Freddie Mercury", birth_date: "09/05/1946", country_of_origin: "United Kingdom")
+barry_hay = Artist.create!(name: "Barry Hay", birth_date: "08/10/1948", country_of_origin: "The Netherlands")
+
+Song.create!([{name: "Another one bites the dust",
+                  release_date: "03/10/1960",
+                  genre: "Rock",
+                  artist: queen},
+                  {name: "We are the champions",
+                  release_date: "03/11/1963",
+                  genre: "Rock",
+                  artist: queen},
+                  {name: "Hey Jude",
+                  release_date: "01/07/1960",
+                  genre: "Pop",
+                  artist: paul_mc_cartney},
+                  {name: "Let it be",
+                  release_date: "03/10/1965",
+                  genre: "Rock",
+                  artist: paul_mc_cartney},
+                  {name: "Radar Love",
+                  release_date: "03/10/1964",
+                  genre: "Rock",
+                  artist: barry_hay},
+                  {name: "When the lady smiles",
+                  release_date: "03/10/19670",
+                  genre: "Rock",
+                  artist: barry_hay}])
