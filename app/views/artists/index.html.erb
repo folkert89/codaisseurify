@@ -1,13 +1,13 @@
-<div class="panel panel-primary text-center">
+<div class="panel panel-primary text-center container-fluid">
   <div class="panel-heading">
-    All artists:
+    <h1>All artists:</h1>
   </div>
   <div class="panel-body">
 
     <% @artists.each do |artist| %>
     <div class="list-group">
       <div class="list-group-item">
-        <h4><%= artist.name %></h4>
+        <h4><%= link_to "#{artist.name}", artist%></h4>
       </div>
 
     </div>
