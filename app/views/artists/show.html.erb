@@ -2,8 +2,11 @@
 <h3>All songs</h3>
 <ol>
   <% @artist.songs.each do |song|%>
-    <li> <%= song.name %></li>
+    <li> <%= song.name %>
+      <%= link_to "Play song", url_for([@artist, song]), class: "btn btn-primary" %>
+      <!-- <%= link_to "Delete song", new_artist_song_path(@artist), class: "btn btn-primary" %> -->
+    </li>
   <% end %>
 </ol>
 
-<%= link_to "[Add new song]", new_artist_song_path(@artist), class: "btn btn-primary" %>
+<%= link_to "Add new song", new_artist_song_path(@artist), class: "btn btn-primary" %>

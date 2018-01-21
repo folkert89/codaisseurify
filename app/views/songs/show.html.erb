@@ -1,0 +1,9 @@
+<h1>playing song: <%=@song.name%></h1>
+<ul>
+  <li>Artist: <%=@song.artist.name%></li>
+  <li>Genre: <%=@song.genre%></li>
+  <li>release_date: <%=@song.release_date%></li>
+</ul>
+
+<%= link_to "Back to artist", artist_path(@song.artist), class: "btn btn-primary" %>
+<%= link_to "Delete song", url_for([@song.artist, @song]), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %>
