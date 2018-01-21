@@ -34,4 +34,17 @@ RSpec.describe Artist, type: :model do
       expect { artist.destroy }.to change(Song, :count).by(-1)
     end
   end
+  describe "association with photo" do
+    let(:artist) { create :artist }
+    let!(:photo) { create :photo, artist: artist }
+
+    it "has one photo" do
+
+      expect(artist.photo).to eq(photo)
+    end
+
+    it "deletes associated photo" do
+      expect { artist.destroy }.to change(Photo, :count).by(-1)
+    end
+  end
 end
