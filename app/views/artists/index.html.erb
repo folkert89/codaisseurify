@@ -8,11 +8,31 @@
     <div class="list-group">
       <div class="list-group-item">
         <h4><%= link_to "#{artist.name}", artist%></h4>
-        <%= link_to "Delete artist", artist, class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %>
+        <%= image_tag artist.photo.image.thumbnail, class: :image_responsive %>
       </div>
-
+      <%= link_to "Delete artist", artist, class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %>
     </div>
     <% end %>
 
   </div>
 </div>
+
+<!--
+<div class="panel panel-primary text-center container-fluid">
+  <div class="panel-heading">
+    <h1>All artists:</h1>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <% @artists.each do |artist| %>
+        <div class="col-md-4">
+          <figure class="figure">
+            <%= image_tag artist.photo.image.thumbnail, class: "figure-img" %>
+            <figcaption class="figure-caption"><h4><%= link_to "#{artist.name}", artist%></h4></figcaption>
+          </figure>
+          <%= link_to "Delete artist", artist, class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div> -->

@@ -1,4 +1,5 @@
 Song.destroy_all
+Photo.destroy_all
 Artist.destroy_all
 
 paul_mc_cartney = Artist.create!(name: "Paul McCartney", birth_date: "06/11/1942", country_of_origin: "United Kingdom")
@@ -29,3 +30,7 @@ Song.create!([{name: "Another one bites the dust",
                   release_date: "03/10/19670",
                   genre: "Rock",
                   artist: barry_hay}])
+
+photo1 = Photo.create!(remote_image_url: "http://res.cloudinary.com/folkert89/image/upload/v1516533882/paul.jpg", artist: paul_mc_cartney)
+photo2 = Photo.create!(remote_image_url: "http://res.cloudinary.com/folkert89/image/upload/v1516533947/queen.jpg", artist: queen)
+photo3 = Photo.create!(remote_image_url: "http://res.cloudinary.com/folkert89/image/upload/c_scale,w_1065/v1516533995/barry.jpg", artist: barry_hay)

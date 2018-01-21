@@ -1,7 +1,7 @@
 class Artist < ApplicationRecord
   has_many :songs, dependent: :destroy
-  has_one :photo
-  
+  has_one :photo, dependent: :destroy
+
   validates :name, presence: true
   validates :birth_date, presence: true
   validates :country_of_origin, presence: true
