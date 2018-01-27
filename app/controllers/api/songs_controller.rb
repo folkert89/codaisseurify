@@ -2,10 +2,31 @@ class Api::SongsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_artist
   def index
+    render status: 200, json: @artist.songs
+  end
+
+  def create
+    room = Room.new(room_params)
+
+    if room.save
+      render status: 200, json: room
+    else
+      render status: 422, json: {
+        errors: room.errors
+      }.to_json
+    end
+  end
+
+  def destroy
+    room = Room.find(params[:id])
+    room.destroy
+
     render status: 200, json: {
-      artists: @artist.songs
+      message: "Room successfully deleted"
     }.to_json
   end
+
+
   def create
     song = @artist.songs.new(song_params)
 
