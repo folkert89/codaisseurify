@@ -1,10 +1,12 @@
 class SongsController < ApplicationController
     before_action :load_artist
-    def new
-      @song = @artist.songs.new
-    end
+
     def show
       @song = @artist.songs.find(params[:id])
+    end
+    
+    def new
+      @song = @artist.songs.new
     end
 
     def create
