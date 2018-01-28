@@ -29,6 +29,20 @@ feature 'Manage songs', js: true do
     # Expect the new song to be displayed in the list of songs
     expect(page).to have_no_content('Best song')
   end
+  scenario 'remove all songs' do
+    # Point your browser towards the todo path
+    visit artist_path(current_artist)
+
+    3.times {
+      type_text "Best song"
+      invoke_action
+    }
+
+    click_on("Delete all songs")
+
+    # Expect the new song to be displayed in the list of songs
+    expect(page).to have_no_content('Best song')
+  end
 
 end
 
