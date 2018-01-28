@@ -1,28 +1,59 @@
 function createSong(title) {
-  var songId = "song-" + nextTodoId();
-  var songTitle = { title: title };
+  var songTitle = { name: title };
   var artistId = $("#artist_id").val();
   console.log(artistId);
 
-  var listItem = $("<li></li>");
-  listItem.addClass("song");
-  listItem.attr("id", songId)
-  console.log(title);
-  listItem.html(title);
+  $.ajax({
+  type: "POST",
+  url: "/api/artists/"+ artistId +"/songs.json",
+  data: JSON.stringify({
+      song: songTitle
+  }),
+  contentType: "application/json",
+  dataType: "json"
+  })
+  .done(function(rails_song){
+    console.log(rails_song);
+    var songId = rails_song.id;
 
-  $("#songList").append( listItem );
+    var listItem = $("<li></li>");
+    listItem.addClass("song");
+    listItem.attr("id", songId);
+    console.log(title);
+    listItem.html(title);
+
+    $("#songList").append( listItem );
+  })
+  .fail(function(error){
+    console.log(error);
+    // console.log(error.responseJSON.errors[0]);
+    // error_message = error.repsonseText;
+    // showError(error_message);
+  });
 }
 
-function nextTodoId() {
-  return $(".song").length + 1;
-}
+// function showError(message) {
+//   var errorHelpBlock = $('<span class="help-block"></span>')
+//     .attr('id', 'error_message')
+//     .text(message);
+//
+//   $("#formgroup-title")
+//     .addClass("has-error")
+//     .append(errorHelpBlock);
+// }
+//
+// function resetErrors() {
+//   $("#error_message").remove();
+//   $("#formgroup-title").removeClass("has-error");
+// }
 
 function submitSong(event) {
   event.preventDefault();
+  // resetErrors();
   var title = $("#song_name").val();
   console.log(title);
   createSong(title);
-  $("#new_song").val(null);
+  $("#song_name").val(null);
 }
 
 
