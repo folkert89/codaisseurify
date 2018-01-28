@@ -34,7 +34,7 @@ function createSong(title) {
     deleteButton.attr("href", "#")
     listItem.append(deleteButton);
 
-    $("#songList").append( listItem );
+    $("#song_list").append( listItem );
   })
   .fail(function(error){
     console.log(error);
@@ -47,7 +47,7 @@ function deleteSong(event) {
   event.preventDefault();
   console.log(event)
   console.log(event.currentTarget.id)
-  current_song_id = event.currentTarget.id
+  var current_song_id = event.currentTarget.id;
 
   $.ajax({
     type: "DELETE",
@@ -55,7 +55,7 @@ function deleteSong(event) {
     contentType: "application/json",
     dataType: "json"
     })
-    .done(function(data) {
+    .done(function(JSON) {
     $('li[id="'+current_song_id+'"]').remove();
   });
 }
@@ -85,9 +85,18 @@ function submitSong(event) {
   $("#song_name").val(null);
 }
 
+function deleteAllSongs() {
+
+  $(".delSong")
+    .map(function() {
+      this.click();
+    });
+}
+
 
 $(document).ready(function() {
   // rails automatically created form ids for #song_name and #new_song
   $("form#new_song").bind('submit', submitSong);
   $(".delSong").bind("click", deleteSong);
+  $("#delAllSongs").bind("click", deleteAllSongs);
 });
