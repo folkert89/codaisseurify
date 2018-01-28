@@ -15,6 +15,20 @@ feature 'Manage songs', js: true do
     # Expect the new song to be displayed in the list of songs
     expect(page).to have_content('Best song')
   end
+  scenario 'remove a song' do
+    # Point your browser towards the todo path
+    visit artist_path(current_artist)
+
+    # Enter description in the text field
+    type_text "Best song"
+
+    # Press enter (to submit the form)
+    invoke_action
+    click_on("Delete song")
+
+    # Expect the new song to be displayed in the list of songs
+    expect(page).to have_no_content('Best song')
+  end
 
 end
 
