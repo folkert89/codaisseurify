@@ -5,15 +5,15 @@
 
 <ol id="songList">
   <% @artist.songs.each do |song|%>
-    <li class="song"> <%= song.name %>
+    <li class="song", id="<%= song.id %>"> <%= song.name %>
       <!-- <%= link_to "Play song", url_for([@artist, song]), class: "btn btn-primary" %> -->
-      <!-- <%= link_to "Delete song", artist_song_path(@artist, song), class: "btn btn-primary", method: :delete, data: { confirm: "Are you sure?" } %> -->
+      <%= link_to "Delete song", artist_song_path(@artist, song), id: song.id, class: "btn btn-primary delSong" %>
     </li>
   <% end %>
 </ol>
 
-<!--
-<%= link_to "Add new song", new_artist_song_path(@artist), class: "btn btn-primary" %> -->
+
+<!-- <%= link_to "Add new song", new_artist_song_path(@artist), class: "btn btn-primary" %>  -->
 <hr>
 <%= render "form"%>
 

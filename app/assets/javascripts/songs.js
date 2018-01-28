@@ -1,26 +1,38 @@
+
+function currentArtist() {
+  return $("#artist_id").val();
+}
+
 function createSong(title) {
   var songTitle = { name: title };
-  var artistId = $("#artist_id").val();
-  console.log(artistId);
 
   $.ajax({
   type: "POST",
-  url: "/api/artists/"+ artistId +"/songs.json",
+  url: "/api/artists/"+ currentArtist() +"/songs.json",
   data: JSON.stringify({
       song: songTitle
   }),
   contentType: "application/json",
   dataType: "json"
   })
-  .done(function(rails_song){
-    console.log(rails_song);
-    var songId = rails_song.id;
+  .done(function(JSON_string){
+    console.log(JSON_string);
+    var songId = JSON_string.song.id;
+    console.log(songId)
 
     var listItem = $("<li></li>");
     listItem.addClass("song");
     listItem.attr("id", songId);
     console.log(title);
     listItem.html(title);
+
+    var deleteButton = $("<a></a>")
+    deleteButton.attr("id", songId);
+    deleteButton.addClass("btn btn-primary delSong");
+    deleteButton.bind("click", deleteSong);
+    deleteButton.html("Delete song");
+    deleteButton.attr("href", "#")
+    listItem.append(deleteButton);
 
     $("#songList").append( listItem );
   })
@@ -31,6 +43,23 @@ function createSong(title) {
     // showError(error_message);
   });
 }
+function deleteSong(event) {
+  event.preventDefault();
+  console.log(event)
+  console.log(event.currentTarget.id)
+  current_song_id = event.currentTarget.id
+
+  $.ajax({
+    type: "DELETE",
+    url: "/api/artists/"+ currentArtist() +"/songs/"+current_song_id+".json",
+    contentType: "application/json",
+    dataType: "json"
+    })
+    .done(function(data) {
+    $('li[id="'+current_song_id+'"]').remove();
+  });
+}
+
 
 // function showError(message) {
 //   var errorHelpBlock = $('<span class="help-block"></span>')
@@ -60,4 +89,5 @@ function submitSong(event) {
 $(document).ready(function() {
   // rails automatically created form ids for #song_name and #new_song
   $("form#new_song").bind('submit', submitSong);
+  $(".delSong").bind("click", deleteSong);
 });
