@@ -6,5 +6,4 @@
 </ul>
 
 <%= link_to "Back to artist", artist_path(@song.artist), class: "btn btn-primary" %>
-<!-- <%= link_to "Delete song", url_for([@song.artist, @song]), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %> -->
 <%= link_to "Delete song", artist_song_path([@song.artist, @song]), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %>

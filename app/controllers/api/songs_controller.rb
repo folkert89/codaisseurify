@@ -5,18 +5,6 @@ class Api::SongsController < ApplicationController
     render status: 200, json: @artist.songs
   end
 
-  def create
-    room = Room.new(room_params)
-
-    if room.save
-      render status: 200, json: room
-    else
-      render status: 422, json: {
-        errors: room.errors
-      }.to_json
-    end
-  end
-
   def destroy
     room = Room.find(params[:id])
     room.destroy

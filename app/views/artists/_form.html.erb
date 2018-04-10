@@ -4,21 +4,9 @@
     <%= f.text_field :name, placeholder: "Name", class: "form-control" %>
   </div>
 
-  <!-- <div class="form-group">
-    <label>Genre</label>
-    <%= f.text_field :genre, placeholder: "Genre", class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <label>Release Date</label>
-    <%=  f.date_select :release_date, class: "form-control" %>
-  </div> -->
-
   <label>Add this song?</label>
 
   <div class="actions">
     <%= f.submit "Add song", class: "btn btn-primary", data: {disable_with: false}%>
   </div>
 <% end %>
-<!--button had an automatic disable function after clicking on inspect element.
-solved through https://stackoverflow.com/questions/42016113/rails-data-disable-with-re-enabling-button  -->

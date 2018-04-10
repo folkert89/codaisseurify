@@ -10,10 +10,4 @@ class ArtistsController < ApplicationController
     @artist.destroy
     redirect_to root_url, notice: "Artist succesfully removed"
   end
-
-  private
-
-  # def current_artist
-  #   @artist = Artist.find(params[:id])
-  # end
 end
